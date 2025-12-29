@@ -1,60 +1,83 @@
-# 🤖 GenAIChatBot ~ RizzBot
+# 📘 AskMyNotes
 
-A document-aware, hallucination-resistant chatbot built with OpenAI + LangChain + RAG + Embeddings.
-This chatbot answers your queries from uploaded PDF notes, and if the answer isn’t present in your notes, it falls back to Wikipedia with a disclaimer.
+**AskMyNotes** is a Streamlit-based AI application that lets you upload your personal notes (PDF, DOCX, or TXT) and ask questions about them.  
+The answers are generated **strictly from the uploaded content**, using semantic search and Google Gemini models.
 
+---
 
-✨ Features
+## ✨ Features
 
-📄 Upload PDF notes and ask questions directly.
+- 📂 Upload notes in **PDF, DOCX, or TXT** format  
+- 🔍 Semantic search using **FAISS vector database**  
+- 🤖 AI-powered answers using **Google Gemini**  
+- 🔒 Answers are based **only on your notes**  
+- ⏳ Clear on-page loading and processing indicators  
+- 🖥️ Optimized for laptop/desktop usage  
 
-🔍 Uses Retrieval-Augmented Generation (RAG) to fetch answers from your notes.
+---
 
-🌍 Falls back to Wikipedia search if the answer is not in the provided documents.
+## 🛠️ Tech Stack
 
-💬 Beautiful Streamlit UI with custom chat bubbles and Lottie animations.
+- **Frontend**: Streamlit  
+- **LLM**: Google Gemini (via LangChain)  
+- **Embeddings**: Google Generative AI embeddings  
+- **Vector Store**: FAISS  
+- **Language**: Python 3  
 
-🧠 Reduces hallucination problem of LLMs by making sources transparent.
+---
 
+## 📁 Project Structure
 
+```bash
+AskMyNotes/
+├── AskMyNotes.py # Main Streamlit application
+├── requirements.txt # Project dependencies
+├── .env # API keys (not committed)
+├── .gitignore
+└── README.md
+```
 
-🛠️ Tech Stack
+---
 
-Language Model: GPT-3.5 Turbo (OpenAI)
+## 🚀 Setup & Usage (on any PC)
 
-Frameworks & Libraries:
+Follow these steps **in order**.
 
-LangChain – Document retrieval & chains
+---
 
-FAISS – Vector similarity search
+### 1️⃣ Clone the Repository
 
-PyPDF2 – Extract text from PDFs
+```bash
+git clone https://github.com/AdarshSharma24/AskMyNotes.git
+cd AskMyNotes
+```
 
-python-docx – Extract text from DOCX files
+### 2️⃣ Create a Virtual Environment (Recommended)
+#### Windows
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+#### Linux / macOS
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
-Streamlit – Interactive UI
+### 3️⃣ Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-dotenv – API key management
+### 4️⃣ Set Up Environment Variables
+Create a file named .env in the project root:
+```ruby
+GOOGLE_API_KEY=your_google_gemini_api_key_here
+```
 
-
-
-🚀 How It Works
-
-Upload your notes (PDF, DOCX, or TXT).
-
-Notes are split into chunks using RecursiveCharacterTextSplitter.
-
-Chunks are converted into embeddings using OpenAIEmbeddings.
-
-User queries are matched with the most relevant chunks using FAISS similarity search.
-
-The chatbot generates a response using ChatOpenAI with a custom prompt.
-
-If the relevant context is not found, the bot fetches a short summary from Wikipedia.
-
-Stylized chat bubbles display the user query and bot response in a beautiful Streamlit UI.
-
-
-
+### 5️⃣ Run the Application
+```bash
+python -m streamlit run AskMyNotes.py
+```
 
 
