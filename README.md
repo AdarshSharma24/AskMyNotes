@@ -55,13 +55,17 @@ cd AskMyNotes
 ### 2️⃣ Create a Virtual Environment (Recommended)
 #### Windows
 ```bash
-python -m venv .venv
-.venv\Scripts\activate
+python -m venv .venv   #creating the enviroment
+.venv\Scripts\activate   #activating the enviroment
 ```
 #### Linux / macOS
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
+python3 -m venv .venv   #creating the enviroment
+source .venv/bin/activate   #activating the enviroment
+```
+#### If you are using VS Code you can also do this for activating your enviroment:
+```ruby
+Ctrl+Shift+P > Python Interpreter > select the one which you have created in your working directory i.e. AskMyNotes
 ```
 
 ### 3️⃣ Install Dependencies
@@ -80,4 +84,8 @@ GOOGLE_API_KEY=your_google_gemini_api_key_here
 python -m streamlit run AskMyNotes.py
 ```
 
+### If you want to exit the virtual enviroment
+just write ``deactivate`` in the terminal where virtual enviroment is active.
+
+Virtual enviroment only affects python, it has nothing to do with git commands.
 
