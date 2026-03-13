@@ -31,8 +31,13 @@ if not GOOGLE_API_KEY:
 # Helper for Lottie Animations
 # =========================
 def load_lottie_url(url: str):
-    r = requests.get(url)
-    return r.json() if r.status_code == 200 else None
+    try:
+        # Fails gracefully if it takes longer than 5 seconds
+        r = requests.get(url, timeout=5)
+        return r.json() if r.status_code == 200 else None
+    except requests.exceptions.RequestException:
+        # If the network fails, return None and app continues running
+        return None
 
 # =========================
 # Custom Styling (CSS)
@@ -144,8 +149,8 @@ if file is not None:
 
             status.update(label="Creating embeddings...")
             embeddings = GoogleGenerativeAIEmbeddings(
-                model="models/text-embedding-004",
-                google_api_key=GOOGLE_API_KEY
+                model="models/gemini-embedding-001", # Re-check your API console, but ensure the version is current
+                api_key=GOOGLE_API_KEY
             )
             vector_store = FAISS.from_texts(chunks, embeddings)
 
@@ -178,7 +183,7 @@ if file is not None:
                     model="gemini-2.5-flash",
                     temperature=0.3,
                     max_tokens=1000,
-                    google_api_key=GOOGLE_API_KEY
+                    api_key=GOOGLE_API_KEY
                 )
 
                 prompt = ChatPromptTemplate.from_template("""
