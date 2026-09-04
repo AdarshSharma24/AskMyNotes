@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from docx import Document
 from pypdf import PdfReader
 from streamlit_lottie import st_lottie
+from streamlit.errors import StreamlitSecretNotFoundError
 
 from langchain_google_genai import (
     ChatGoogleGenerativeAI,
@@ -22,13 +23,11 @@ warnings.filterwarnings("ignore")
 # Load .env and get API key
 # =========================
 load_dotenv()
-# Replace the old load_dotenv() logic with this: This code allows to fetch the API keys in local machine and also at deployed website using steamlit.io
-# if "GOOGLE_API_KEY" in st.secrets:
-#     GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
-# else:
-#     # Fallback for local development
-    # load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+try:
+    GOOGLE_API_KEY = st.secrets.get("GOOGLE_API_KEY", GOOGLE_API_KEY)
+except StreamlitSecretNotFoundError:
+    pass
 
 # =========================
 # Helper for Lottie Animations
