@@ -29,6 +29,7 @@ try:
 except StreamlitSecretNotFoundError:
     pass
 
+
 # =========================
 # Helper for Lottie Animations
 # =========================
