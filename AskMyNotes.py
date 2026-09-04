@@ -23,12 +23,12 @@ warnings.filterwarnings("ignore")
 # =========================
 load_dotenv()
 # Replace the old load_dotenv() logic with this: This code allows to fetch the API keys in local machine and also at deployed website using steamlit.io
-if "GOOGLE_API_KEY" in st.secrets:
-    GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
-else:
-    # Fallback for local development
-    load_dotenv()
-    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# if "GOOGLE_API_KEY" in st.secrets:
+#     GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+# else:
+#     # Fallback for local development
+    # load_dotenv()
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # =========================
 # Helper for Lottie Animations
